@@ -1,16 +1,31 @@
-# MEA-optimisation-project
-Estimation de paramètre d'une regression linéaire pénalisée (LASSO) via un problème de minimisation :
-Ce projet implémente l'algorithme **FISTA (Fast Iterative Shrinkage-Thresholding Algorithm)** pour résoudre un problème de régression LASSO sur un jeu de données de **partage de vélos (Bike Sharing Dataset)**.
+# Projet – Régression LASSO avec FISTA, Peaceman–Rachford et ADAM
 
-Le notebook Python contient :
+Ce projet étudie la résolution d’un problème de régression LASSO appliqué au dataset Bike Sharing (prédiction du nombre de locations de vélos).
+L’objectif est de comparer plusieurs algorithmes d’optimisation pour estimer les coefficients d’un modèle linéaire régularisé.
 
-- L'implémentation de l'algorithme **FISTA** pour la minimisation d'une fonction convexe avec régularisation L1.
-- L'implémentation de l'algorithme **PEACEMAN-RACHFORD** pour la minimisation d'une fonction convexe avec régularisation L1.
-- Une illustration de la convergence de la solution `x_n` sur plusieurs itérations.
-- La prédiction du nombre de locations de vélos (`Y_pred`) à partir des données `Xtilde`.
-- Des visualisations graphiques pour analyser les performances.
+**Contenu du notebook :**
 
-**Base de données utilisée :**  
-Le projet utilise le jeu de données **Bike Sharing Dataset**, qui contient des informations journalières sur le nombre de locations de vélos ainsi que des variables explicatives telles que la météo, le jour de la semaine et d’autres facteurs influençant la demande. On ne se concentre que sur la météo.
+1) Formulation du problème
+-Régression LASSO : minimisation d’un terme de moindres carrés avec pénalisation L1.
+-Vérification des hypothèses (convexité, différentiabilité, existence de solutions).
 
----
+2) Algorithms implémentés
+-FISTA : méthode de gradient proximal accélérée.
+-Peaceman–Rachford (PR) : méthode de splitting, qui s’avère la plus performante dans ce projet.
+-ADAM : utilisé pour comparaison, convergence moins satisfaisante dans ce contexte.
+
+3) Analyse de convergence
+-Étude de la loss par algorithme.
+-Influence du pas (τ) et des hyperparamètres.
+-Comparaison des temps d’exécution et de la stabilité numérique.
+
+4) Sélection du meilleur λ
+-Recherche du paramètre de régularisation optimal via PR.
+-Analyse de la sparsité et du compromis biais/variance.
+
+5) Évaluation finale
+-Prédiction du modèle LASSO obtenu.
+-Visualisation 
+-Calcul du R^2.
+-Discussion sur les limites du modèle linéaire par rapport à la non-linéarité des données.
+
